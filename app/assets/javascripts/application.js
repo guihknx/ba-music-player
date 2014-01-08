@@ -75,7 +75,7 @@ MusicPlayer.handeEnter = function(){
 
 MusicPlayer.search = function(){
 
-
+  // remove older timeouted action based in user keyup event
   jQuery('#find').keydown(function(e){
 
       if ( e.keyCode === 13 )
@@ -83,6 +83,7 @@ MusicPlayer.search = function(){
   });
 
   jQuery( '.side-form' ).on('submit',function(e){
+	// avoid form for get submited
     e.preventDefault();
   });
 
