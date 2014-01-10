@@ -55,6 +55,7 @@ Music::Application.routes.draw do
   #   end
   root to: 'music_player#home'
   get "music_player/fetch"
+  get "music_player/transpondertrack" => 'music_player#transpondertrack'
   get '/null' => 'music_player#home' 
   post '/' => 'music_player#home'  
   get '/canvas' => 'music_player#home'  
