@@ -1,1 +1,3 @@
-<%=@resolve%>
+<%=ActiveSupport::JSON.encode(
+  @json
+  ).html_safe%>

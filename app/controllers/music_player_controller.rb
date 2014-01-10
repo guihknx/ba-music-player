@@ -1,12 +1,15 @@
 class MusicPlayerController < ApplicationController
   layout Proc.new { |controller| controller.request.xhr? ? false : 'application' }
+  require 'open-uri'
+
   def home
     @hash = params[:play]
     
   end
+
   def fetch
 
-    require 'open-uri'
+ 
     @query = params[:q].nil?  ? '' : params[:q]
 
     #######################################################
@@ -20,7 +23,7 @@ class MusicPlayerController < ApplicationController
         :artwork_url => track['artwork_url'], 
         :label_name  => track['label_name'], 
         :title       => track['title'],
-        :desc       => track['description']
+        :desc        => track['description']
       } 
     end
   end
@@ -30,7 +33,9 @@ class MusicPlayerController < ApplicationController
 
     @resolve = JSON.parse(
       open(
-        'http://api.soundcloud.com/tracks/' + @trackid.to_s + '.json?client_id=' + @apiKey.to_s ).read )
+        'http://api.soundcloud.com/tracks/' + @trackid.to_s + '.json?client_id=41becea728ba6323a7402d268b6a5410' ).read )
+    @json =  @resolve
+
   end 
 
   def addListaned
