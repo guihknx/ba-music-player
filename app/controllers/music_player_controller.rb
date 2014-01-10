@@ -25,6 +25,14 @@ class MusicPlayerController < ApplicationController
     end
   end
 
+  def transpondertrack
+    @trackid = params[:id]
+
+    @resolve = JSON.parse(
+      open(
+        'http://api.soundcloud.com/tracks/' + @trackid.to_s + '.json?client_id=' + @apiKey.to_s ).read )
+  end 
+
   def addListaned
     #still developing, add music after pushstate hash set
     #see config/schema for info abouut migration
