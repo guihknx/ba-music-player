@@ -110,6 +110,7 @@ MusicPlayer.listenClick = function(){
           jQuery('#playSound').click();
           jQuery('#playSound').removeClass('flashing');
           MusicPlayer.volumeControl();
+          document.title = jQuery(this).find('.pb-title').text();
 
       }, 5000);
 
@@ -141,23 +142,23 @@ MusicPlayer.stripTags = function( data ){
 MusicPlayer.scPlayer = function(id, ex){
     if ( ex == true ){
       jQuery.getJSON( 'music_player/transpondertrack/?id=' + lasted.track, function(e){
-      var playerRaw;
-
-      jQuery('#plr').attr('src', 'http://w.soundcloud.com/player/?url=http://api.soundcloud.com/tracks/'+e.id );
+      
+        var title = e.title;
+        jQuery('#plr').attr('src', 'http://w.soundcloud.com/player/?url=http://api.soundcloud.com/tracks/'+e.id );
 
       
-      jQuery("#playSound").removeClass('flashing').delay(400).fadeOut().fadeIn(function(){
-        
-      });
+        jQuery("#playSound").removeClass('flashing');
 
         jQuery('.app-header')
         .find('h3')
-        .html('<i class="fa fa-play flashing" id="playSound"></i><span class="playing">' + e.title + e.description + '</span><span class="volume"> <input id="volum" type="range" min="1" max="100" step="1" value="100"> <i class="fa  fa-volume-up" id="volumecaption"></i></span><span class="stats"><i id="stopSound" class="fa fa-pause"></i><span id="status"></span></span>' );
+        .html('<i class="fa fa-play flashing" id="playSound"></i><span class="playing">' + title + e.description + '</span><span class="volume"> <input id="volum" type="range" min="1" max="100" step="1" value="100"> <i class="fa  fa-volume-up" id="volumecaption"></i></span><span class="stats"><i id="stopSound" class="fa fa-pause"></i><span id="status"></span></span>' );
         });
+
         setTimeout(function(){
            MusicPlayer.widget.play();
-           MusicPlayer.handleEvents();
+           MusicPlayer.handleEvents();           
         }, 5000);
+        document.querySelector.apply(document,['title']).innerHTML = jQuery('.playing').text();
 
 
     }
@@ -172,8 +173,10 @@ MusicPlayer.scPlayer = function(id, ex){
     
     });
     setTimeout(function(){
-      MusicPlayer.handleEvents();
+      MusicPlayer.handleEvents(); 
+      
     }, 4000);
+    document.querySelector.apply(document,['title']).innerHTML = jQuery('.playing').text();
 };
 
 MusicPlayer.handleEvents = function(){
