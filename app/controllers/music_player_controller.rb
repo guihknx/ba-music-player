@@ -31,9 +31,7 @@ class MusicPlayerController < ApplicationController
   def transpondertrack
     @trackid = params[:id]
 
-    @resolve = JSON.parse(
-      open(
-        'http://api.soundcloud.com/tracks/' + @trackid.to_s + '.json?client_id=41becea728ba6323a7402d268b6a5410' ).read )
+    @resolve = JSON.parse( open('http://api.soundcloud.com/tracks/' + @trackid.to_s + '.json?client_id=41becea728ba6323a7402d268b6a5410' ).read )
     @json =  @resolve
 
   end 
