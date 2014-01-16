@@ -13,11 +13,15 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
+<<<<<<< HEAD
 //= require pace-loader
+=======
+>>>>>>> 0be350da5cdbd70c25f1ead0e39829f0a8079c67
 //= require_tree .
 
 window.onload = function(){
   MusicPlayer.start();
+<<<<<<< HEAD
 
 };
 
@@ -68,6 +72,19 @@ MusicPlayer.playAfter = function(){
          MusicPlayer.handleEvents();           
       }, 5000);
 
+=======
+}
+var MusicPlayer = {};
+
+MusicPlayer.start = function(){
+
+    this.widget = SC.Widget("plr");
+  if( lasted.track != '' ){
+    MusicPlayer.scPlayer( lasted.track, true );
+  }
+ // throw new Error("Something bad happened.")
+  MusicPlayer.search();
+>>>>>>> 0be350da5cdbd70c25f1ead0e39829f0a8079c67
 };
 
 MusicPlayer.searchHandler = function(){
@@ -80,7 +97,11 @@ MusicPlayer.searchHandler = function(){
   },
   function(e){
       $.each(e, function(i, item) {
+<<<<<<< HEAD
         var desc = ( e[i].label_name == 'null' ) ? '' : e[i].label_name;
+=======
+        var desc = ( e[i].label_name == 'null' ) ? 'null' : e[i].label_name;
+>>>>>>> 0be350da5cdbd70c25f1ead0e39829f0a8079c67
         var returned = '';
         returned += '<div class="panel panel-default bordered-none card" data-desc="' + MusicPlayer.stripTags( e[i].desc ) + '" data-id="'+e[i].id+'">';
         returned += ' <a href="javascript:;" class="panel-body-heading full-line doact">';
@@ -142,7 +163,11 @@ MusicPlayer.listenClick = function(){
 
       jQuery('.app-header')
       .find('h3')
+<<<<<<< HEAD
       .html('<i class="fa fa-play" id="playSound"></i><span class="playing">' + jQuery(this).find('.pb-title').text() + desc + '</span><span class="volume"> <input id="volum" type="range" min="1" max="100" step="1" value="100"> <i class="fa  fa-volume-up" id="volumecaption"></i></span><span class="stats"><i id="stopSound" class="fa fa-pause"></i><span id="status"></span></span>' );
+=======
+      .html('<i class="fa fa-play flashing" id="playSound"></i><span class="playing">' + jQuery(this).find('.pb-title').text() + desc + '</span><span class="volume"> <input id="volum" type="range" min="1" max="100" step="1" value="100"> <i class="fa  fa-volume-up" id="volumecaption"></i></span><span class="stats"><i id="stopSound" class="fa fa-pause"></i><span id="status"></span></span>' );
+>>>>>>> 0be350da5cdbd70c25f1ead0e39829f0a8079c67
       
       MusicPlayer.scPlayer( id );
 
@@ -169,7 +194,11 @@ MusicPlayer.listenClick = function(){
 MusicPlayer.volumeControl = function(){
     jQuery("#volum").on('change', function(){
         MusicPlayer.widget.setVolume( jQuery(this).val() );
+<<<<<<< HEAD
         //console.log(jQuery(this).val());
+=======
+        console.log(jQuery(this).val());
+>>>>>>> 0be350da5cdbd70c25f1ead0e39829f0a8079c67
     });
 };
 
@@ -180,13 +209,42 @@ MusicPlayer.stripTags = function( data ){
 };
 
 MusicPlayer.scPlayer = function(id, ex){
+<<<<<<< HEAD
 
     this.id = id;
+=======
+    if ( ex == true ){
+      jQuery.getJSON( 'music_player/transpondertrack/?id=' + lasted.track, function(e){
+      
+        var title = e.title;
+        jQuery('#plr').attr('src', 'http://w.soundcloud.com/player/?url=http://api.soundcloud.com/tracks/'+e.id );
+
+      
+        jQuery("#playSound").removeClass('flashing');
+
+        jQuery('.app-header')
+        .find('h3')
+        .html('<i class="fa fa-play flashing" id="playSound"></i><span class="playing">' + title + e.description + '</span><span class="volume"> <input id="volum" type="range" min="1" max="100" step="1" value="100"> <i class="fa  fa-volume-up" id="volumecaption"></i></span><span class="stats"><i id="stopSound" class="fa fa-pause"></i><span id="status"></span></span>' );
+        });
+
+        setTimeout(function(){
+           MusicPlayer.widget.play();
+           MusicPlayer.handleEvents();           
+        }, 5000);
+        document.querySelector.apply(document,['title']).innerHTML = jQuery('.playing').text();
+
+
+    }
+
+    this.id = id;
+
+>>>>>>> 0be350da5cdbd70c25f1ead0e39829f0a8079c67
     var playerRaw;
 
     jQuery('#plr').attr('src', 'http://w.soundcloud.com/player/?url=http://api.soundcloud.com/tracks/'+this.id );
 
     jQuery('.app-body').append(playerRaw).fadeIn(function(){
+<<<<<<< HEAD
       MusicPlayer.widget.bind(SC.Widget.Events.PLAY, function(e) {
         alert(1);
           console.log(e);
@@ -199,10 +257,20 @@ MusicPlayer.scPlayer = function(id, ex){
 
     document.querySelector.apply(document,['title']).innerHTML = jQuery('.playing').text();
 
+=======
+    
+    });
+    setTimeout(function(){
+      MusicPlayer.handleEvents(); 
+      
+    }, 4000);
+    document.querySelector.apply(document,['title']).innerHTML = jQuery('.playing').text();
+>>>>>>> 0be350da5cdbd70c25f1ead0e39829f0a8079c67
 };
 
 MusicPlayer.handleEvents = function(){
     $("#playSound").click(function() {
+<<<<<<< HEAD
         return MusicPlayer.setHash('play');
     });  
     $("#stopSound").click(function() {
@@ -265,4 +333,30 @@ MusicPlayer.timeXController = function(intval){
   }, 1000);
 
 };
+=======
+        MusicPlayer.widget.play();
+        MusicPlayer.widget.bind( SC.Widget.Events.LOAD_PROGRESS, function(e) {
+                alert(1);
+                var minuties,
+                secounds;
+                console.log(e);
+
+                var min = parseInt(parseInt(e.currentPosition) / 1000 / 60),
+                sec = parseInt( (parseInt(e.currentPosition) / 1000 % 60)),
+                minuties = ( min.toString().length == 1 ) ? '0'+min : min,
+                secounds = ( sec.toString().length == 1 ) ? '0'+sec : sec;
+
+                jQuery('#status').text( 
+                    minuties + ':' + secounds
+                );
+        });
+    });  
+
+    $("#stopSound").click(function() {
+        MusicPlayer.widget.pause();
+    });    
+    MusicPlayer.listenClick();  
+};
+
+>>>>>>> 0be350da5cdbd70c25f1ead0e39829f0a8079c67
 

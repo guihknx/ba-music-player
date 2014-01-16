@@ -13,7 +13,11 @@ class MusicPlayerController < ApplicationController
     @query = params[:q].nil?  ? '' : params[:q]
 
     #######################################################
+<<<<<<< HEAD
     @apiKey = 'YOU API KEY HERE' #Will return 401 if not set :)
+=======
+    @apiKey = 'YOUR API KEY' #Will return 401 if not set :)
+>>>>>>> 0be350da5cdbd70c25f1ead0e39829f0a8079c67
     #######################################################
 
     doc = JSON.parse(open('http://api.soundcloud.com/tracks.json?q=' + @query.to_s + '&client_id=' + @apiKey.to_s ).read)
@@ -31,9 +35,14 @@ class MusicPlayerController < ApplicationController
   def transpondertrack
     @trackid = params[:id]
 
+<<<<<<< HEAD
     @resolve = JSON.parse( open('https://api.soundcloud.com/tracks/' + @trackid.to_s + '?client_id=41becea728ba6323a7402d268b6a5410&format=json' ).read )
     @json =  @resolve
     
+=======
+    @resolve = JSON.parse( open('http://api.soundcloud.com/tracks/' + @trackid.to_s + '.json?client_id=41becea728ba6323a7402d268b6a5410' ).read )
+    @json =  @resolve
+>>>>>>> 0be350da5cdbd70c25f1ead0e39829f0a8079c67
 
   end 
 
@@ -43,4 +52,8 @@ class MusicPlayerController < ApplicationController
     MusicPlayer.create(:music => params[:musicname], :musicid => params[:id] ) 
   end
 
+<<<<<<< HEAD
 end
+=======
+end
+>>>>>>> 0be350da5cdbd70c25f1ead0e39829f0a8079c67

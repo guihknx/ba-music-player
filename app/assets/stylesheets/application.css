@@ -151,11 +151,16 @@ top: 3px;
     0%{
         text-indent: 100%;
 }
+<<<<<<< HEAD
     10%{
         text-indent: 90%;
 }
     100%{
         text-indent: 0%;  
+=======
+    100%{
+        text-indent: -20%;  
+>>>>>>> 0be350da5cdbd70c25f1ead0e39829f0a8079c67
     }
 }
 .stats{
@@ -166,9 +171,15 @@ top: 3px;
 .side-form i {
     font-size: 25px;
     position: absolute;
+<<<<<<< HEAD
     right: 0;
     bottom: 0;
     background: none repeat scroll 0 0 #3498db;
+=======
+    right: 3%;
+    top: 2.1%;
+        background: none repeat scroll 0 0 #3498db;
+>>>>>>> 0be350da5cdbd70c25f1ead0e39829f0a8079c67
     border: 0 none;
     border-bottom-right-radius: 4px;
     border-top-right-radius: 4px;
@@ -194,6 +205,7 @@ display: none;
 .side-form i:hover{
   background: #34495e;
   color:#bdc3c7;
+<<<<<<< HEAD
 }
 .side-form{
   position:relative !important;
@@ -203,3 +215,6 @@ display: none;
 }
 
 
+=======
+};
+>>>>>>> 0be350da5cdbd70c25f1ead0e39829f0a8079c67

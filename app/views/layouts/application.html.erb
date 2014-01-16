@@ -7,6 +7,20 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+<<<<<<< HEAD
   <%= yield %>
+=======
+<!--  <div id="user-widget">
+  <% if current_user %>
+    Welcome <strong><%= current_user.name %></strong>!
+    <%= link_to "Sign out", signout_path, id: "sign_out" %>
+  <% else %>
+    <%= link_to "Sign in with Facebook", "/auth/facebook", id: "sign_in" %>
+  <% end %>
+</div> -->
+
+<%= yield %>
+<script type='text/javascript' src="http://w.soundcloud.com/player/api.js"></script>
+>>>>>>> 0be350da5cdbd70c25f1ead0e39829f0a8079c67
 </body>
 </html>
