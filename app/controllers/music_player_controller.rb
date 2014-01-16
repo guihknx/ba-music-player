@@ -13,7 +13,7 @@ class MusicPlayerController < ApplicationController
     @query = params[:q].nil?  ? '' : params[:q]
 
     #######################################################
-    @apiKey = '41becea728ba6323a7402d268b6a5410' #Will return 401 if not set :)
+    @apiKey = 'YOU API KEY HERE' #Will return 401 if not set :)
     #######################################################
 
     doc = JSON.parse(open('http://api.soundcloud.com/tracks.json?q=' + @query.to_s + '&client_id=' + @apiKey.to_s ).read)
